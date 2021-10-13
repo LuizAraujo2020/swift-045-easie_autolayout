@@ -24,6 +24,7 @@
 		6FAFBB342717189B00D53753 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6FAFBB372717189B00D53753 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6FAFBB392717189B00D53753 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6FAFBB3F271718AE00D53753 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +41,7 @@
 		6FAFBB1F2717189800D53753 = {
 			isa = PBXGroup;
 			children = (
+				6FAFBB3F271718AE00D53753 /* README.md */,
 				6FAFBB2A2717189800D53753 /* swift-045-easy_autolayout? */,
 				6FAFBB292717189800D53753 /* Products */,
 			);

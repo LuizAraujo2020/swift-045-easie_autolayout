@@ -22,30 +22,21 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+extension AvatarView {
+
+  // MARK:- Social Media Icons
   
-  var chapterNumber = 1
-  var book = Book()
-  
-  // views
-  let avatarView = AvatarView()
-  let bookTextView = UITextView()
-  let chapterLabel = UILabel()
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-
-    _ = book.loadChapter(chapterNumber)
-
-    updateViews()   // load the views with book data
-
-    colorViews()    // color views for reference
-    addGestures()   // swipe gestures to turn the page
+  class func createSocialMediaView() -> UIStackView {
+    // Social media stack view
+    var icons = [UIImageView]()
+    icons.append(UIImageView(image: UIImage(named: "icon_facebook")))
+    icons.append(UIImageView(image: UIImage(named: "icon_pinterest")))
+    icons.append(UIImageView(image: UIImage(named: "icon_twitter")))
     
-    addViews()      // add the sub views to the main view
-    setupFrames()   // setup view frames
-
+    let socialMediaView = UIStackView(arrangedSubviews: icons)
+    socialMediaView.translatesAutoresizingMaskIntoConstraints = false
+    socialMediaView.axis = .horizontal
+    socialMediaView.distribution = .equalSpacing
+    return socialMediaView
   }
-  
 }
-

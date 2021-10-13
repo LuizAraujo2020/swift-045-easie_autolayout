@@ -20,32 +20,39 @@
  THE SOFTWARE.
  */
 
-import UIKit
+import Foundation
 
-class ViewController: UIViewController {
+struct Book {
+  var textArray: NSArray?
+  var chapterImagesArray: NSArray?
   
-  var chapterNumber = 1
-  var book = Book()
+  var title: String?
+  var author: String?
   
-  // views
-  let avatarView = AvatarView()
-  let bookTextView = UITextView()
-  let chapterLabel = UILabel()
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-
-    _ = book.loadChapter(chapterNumber)
-
-    updateViews()   // load the views with book data
-
-    colorViews()    // color views for reference
-    addGestures()   // swipe gestures to turn the page
+  var chapterText: String?
+  var chapterImageName: String?
+  
+  init() {
+    guard let plistPath = Bundle.main.path(forResource: "AliceInWonderland",
+                          ofType: "plist") else { return }
+    guard let dictionary = NSDictionary(contentsOfFile: plistPath) else { return }
     
-    addViews()      // add the sub views to the main view
-    setupFrames()   // setup view frames
-
+    textArray = dictionary["Text"] as? NSArray
+    chapterImagesArray = dictionary["ChapterImages"] as? NSArray
+    
+    title = dictionary["Title"] as? String
+    author = dictionary["Author"] as? String
   }
   
+  mutating func loadChapter(_ chapter: Int) -> Bool {
+    
+    guard let bookTextArray = textArray else { return false }
+    guard let chapterImagesArray = chapterImagesArray else { return false }
+    
+    guard bookTextArray.count >= chapter && chapter > 0 else { return false }
+    chapterText = bookTextArray[chapter-1] as? String
+    chapterImageName = chapterImagesArray[chapter-1] as? String
+    
+    return true
+  }
 }
-

@@ -22,30 +22,38 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class AvatarView: UIView {
   
-  var chapterNumber = 1
-  var book = Book()
-  
-  // views
-  let avatarView = AvatarView()
-  let bookTextView = UITextView()
-  let chapterLabel = UILabel()
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-
-    _ = book.loadChapter(chapterNumber)
-
-    updateViews()   // load the views with book data
-
-    colorViews()    // color views for reference
-    addGestures()   // swipe gestures to turn the page
-    
-    addViews()      // add the sub views to the main view
-    setupFrames()   // setup view frames
-
+  var image: UIImage? {
+    didSet {
+      imageView.image = image
+    }
   }
   
-}
+  var title: String? {
+    didSet {
+      titleLabel.text = title
+    }
+  }
 
+  // Views
+  fileprivate let titleLabel = UILabel()
+  fileprivate let imageView = UIImageView()
+  fileprivate lazy var socialMediaView: UIStackView = {
+    return AvatarView.createSocialMediaView()
+  }()
+
+  override func willMove(toSuperview newSuperview: UIView?) {
+    super.willMove(toSuperview: newSuperview)
+    setup()
+  }
+  
+  func setup() {
+    imageView.backgroundColor = UIColor.magenta
+    titleLabel.backgroundColor = UIColor.orange
+    
+    imageView.contentMode = .scaleAspectFit
+    titleLabel.font = UIFont(name: "AvenirNext-Bold", size: 28.0)
+    titleLabel.textColor = UIColor.black
+  }
+}
